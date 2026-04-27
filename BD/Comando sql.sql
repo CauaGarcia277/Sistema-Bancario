@@ -41,14 +41,14 @@ constraint fk_conta_cliente foreign key (idCliente) references Cliente(idCliente
 
 CREATE TABLE transacao(
 idTransacao int auto_increment,
-idCliente int not null,
 idContaOrigem int not null,
 idContaDestino int not null,
 valor numeric(12,2) not null,
 data_realizada date not null,
 
-constraint pk_transacao primary key (idTransacao, idCliente, idContaOrigem, idContaDestino),
-constraint fk_transacao_cliente foreign key (idCliente) references Cliente(idCliente) on delete cascade on update cascade,
+constraint pk_transacao primary key (idTransacao),
 constraint fk_transacao_contaorigem foreign key (idcontaorigem) references Conta(idConta) on delete cascade on update cascade,
 constraint fk_transacao_contadestino foreign key (idContaDestino) references Conta(idConta) on delete cascade on update cascade
 );
+
+ALTER TABLE Cliente change nome nome_cliente varchar(50) not null;
