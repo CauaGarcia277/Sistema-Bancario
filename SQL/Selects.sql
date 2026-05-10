@@ -39,6 +39,6 @@ ORDER BY SUM(t.valor) desc;
 SELECT c.nome as nome, co.tipo as tipo, SUM(t.valor) as valor
 from conta as co 
 NATURAL JOIN cliente AS c
-INNER JOIN transacao AS t where t.idContaOrigem = co.idConta and co.tipo = 'Corrente'
+INNER JOIN transacao AS t on t.idContaOrigem = co.idConta where co.tipo = 'Corrente'
 GROUP BY nome
 ORDER BY SUM(t.valor) desc;
