@@ -1,6 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-url = r'C:\\Users\\garci\\OneDrive\\Desktop\\Sistema Banco\\Dados_CSV\\transacoes.csv'
+url = r'ADICIONE AQUI O CAMINHO DO ARQUIVO TRANSACOES.CSV DA PASTA E ADICIONE BARRA DUPLA \\ ONDE TEM APENAS UMA BARRA'
 df = pd.read_csv(url, sep = ',')
 
 ##Retornando a média de gastos por cada conta de origem
@@ -40,6 +40,6 @@ print(df.query('idContaOrigem == 2'))
 
 ##Criando uma tabela para a quantidade de transacoes feitas por conta
 quantidade.plot(kind='bar')
-plt.title('Média de gastos por conta')
+plt.title('Quantidade gastos por conta')
 plt.ylabel('Valor')
 plt.show()
