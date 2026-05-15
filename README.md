@@ -34,7 +34,7 @@ Tecnologias principais:
 ## Banco de Dados
 Para o banco de dados foi utilizado o Modelo conceitual
 
-![alt text](DER.png)
+![alt text](foto8.png)
 
 
 ## Análise de Dados
@@ -63,36 +63,36 @@ C:\\Users\\Pasta_seu_dispositivo \\OneDrive\\Desktop\\Sistema Banco\\Dados_CSV\\
 
 1. graficos:
 
-![alt text](<Captura de tela 2026-05-15 172635.png>)
+![alt text](<foto1.png>)
 
 2. terminal:
 - Porcentagem de gasto em transação em forma ordenada:
 
-![alt text](<Captura de tela 2026-05-15 172722.png>)
+![alt text](<foto2.png>)
 
 
 - Média dos valores gastos em transações por quantidades feitas
 
-![alt text](<Captura de tela 2026-05-15 173215.png>)
+![alt text](<foto3.png>)
 
 - Quantidade de transações feitas igual ou maiores que mil
 
-![alt text](<Captura de tela 2026-05-15 173410.png>)
+![alt text](<foto4.png>)
 
 
 3. Comandos SQL
 
 - Selecionando o total de gasto das contas dos usuarios
 
-![alt text](<Captura de tela 2026-05-15 193419.png>)
+![alt text](<foto5.png>)
 
 - Buscando quem teve mais gasto de dinheiro na conta corrente
 
-![alt text](<Captura de tela 2026-05-15 193615.png>)
+![alt text](<foto6.png>)
 
 - Selecionando quem recebeu entrada de valor em conta corrente
 
-![alt text](<Captura de tela 2026-05-15 194123.png>)
+![alt text](<foto7.png>)
 
 
 ## Melhorias Futuras
