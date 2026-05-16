@@ -1,8 +1,14 @@
+![Python](https://img.shields.io/badge/Python-3.x-blue)
+![MySQL](https://img.shields.io/badge/MySQL-Database-orange)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-purple)
+
 # Sistema Bancário em Python e SQL
+
 Projeto de análise de transações bancárias utilizando Python, Pandas e MySQL.
 
+
 ## Descrição
-O sistema é constituido pelo banco de dados relacional, onde o cliente tem seu cadastro, contas, investimento e transações.
+O sistema é constituido por um banco de dados relacional, onde o cliente tem seu cadastro, contas, investimento e transações.
 
 O objetivo principal é realizar a análise dos dados utilizando Selects e o framework Pandas do Python para arquivos CSV e gerar relatórios
 
@@ -29,12 +35,31 @@ Tecnologias principais:
 
 ## Estrutura do Projeto
 
+📂 Sistema-Bancario
 
+- 📂 Python: analise_dados.py
+
+- 📂 SQL: consultas.sql,  procedures.sql
+
+- 📂 Dados_CSV: transacoes.csv
+
+- 📂 DER: modelo_relacional.png
+
+- README.md
 
 ## Banco de Dados
 Para o banco de dados foi utilizado o Modelo conceitual
 
 ![alt text](foto8.png)
+
+O banco foi constituido pelas seguintes entidades:
+- Cliente
+- Conta
+- Investimento
+- Transação
+
+As entidades estão relacionadas com suas respectivas cardialidades.
+
 
 
 ## Análise de Dados
@@ -47,10 +72,23 @@ Foram feitas as seguintes análises
 - agrupamentos (groupby) e ordenamento (order by)
 - gráficos
 
+## Consultas SQL Desenvolvidas
+
+- INNER JOIN
+- NATURAL JOIN
+- GROUP BY
+- ORDER BY
+- SUM()
+- COUNT()
+- MAX
+- MIN
+- LIMIT
+- AS
 ## Como Executar o Projeto
 
 1. Clone o repositório
-2. Instale as dependências (pip install pandas)
+2. Instale as dependências:
+- pip install pandas matplotlib
 3. Execute o arquivo Python (analise_dados.py)
 4. Após baixar o arquivo transacoes.csv, deverá copiar o caminho dele na pasta e adicionar na variável url. Após isso deverá colocar barras duplas = \\\\
 
@@ -101,7 +139,7 @@ C:\\Users\\Pasta_seu_dispositivo \\OneDrive\\Desktop\\Sistema Banco\\Dados_CSV\\
 - Leituras de outros arquivos com Pandas (Excel, Json) e melhorar sua estrutura
 - Dashboard Interativo
 - Integração de Power BI
-
+- Para Modelo conceitual DER: Para versões futuras será implementada uma entidade associativa entre as entidades cliente e conta, pois será implementado o requisito de conta conjunta entre dois clientes.
 
 ## Aprendizados
 Durante a criação do sistema foi aprendido:
@@ -117,7 +155,7 @@ Durante a criação do sistema foi aprendido:
 
 - A modelagem de dados estava inconsistente, após a melhoria foi utilizado outros comandos DDL para encaixar a tabela, como drop e alter.
 
--  Algumas funções do Pandas estavam tendo erro como o value_counts que faz a contagem dos valores, após o estudo e pesquisa foi descoberto que precisava da cláusula 'normalize = True' para seu funcionamento.
+-  Algumas funções do Pandas estavam tendo erro como o value_counts que faz a contagem dos valores, após o estudo e pesquisa foi identificado que o parâmetro normalize = True era necessário
 
 ```python
 df = df.idContaOrigem.value_counts(normalize = True).to_frame()
