@@ -1,54 +1,128 @@
 CREATE DATABASE IF NOT EXISTS SistemaBanco;
 USE SistemaBanco;
 
+
+
 CREATE TABLE Cliente(
-idCliente int auto_increment,
-nome varchar(50) not null,
-CPF char(11) not null unique,
-data_nascimento date not null,
-CEP char(8) not null,
-senha int(10) not null,
+idCliente INT AUTO_INCREMENT,
+nome VARCHAR(50) NOT NULL,
+CPF CHAR(11) NOT NULL UNIQUE,
+data_nascimento DATE NOT NULL,
+CEP CHAR(8) NOT NULL,
+senha INT(10) NOT NULL,
 
-constraint pk_cliente primary key (idCliente)
+CONSTRAINT pk_cliente PRIMARY KEY (idCliente)
 );
 
-CREATE TABLE Investimento (
-idInvestimento int auto_increment,
-idCliente int not null,
-valor numeric(12,2) not null,
-tipo varchar(50) not null,
-rendimento numeric(10,2) not null,
-valor_CDI numeric(5,2) not null,
-data_inicio date not null,
-data_fim date not null,
-
-
-constraint pk_investimento primary key (idInvestimento, idCliente),
-constraint fk_investimento_cliente foreign key (idCliente) references Cliente(idCliente) on delete cascade on update cascade
-);
 
 CREATE TABLE Conta (
-idConta int auto_increment,
-idCliente int not null,
-saldo numeric(12,2),
-tipo varchar(50) not null,
-chave_senha varchar(15),
+idConta INT AUTO_INCREMENT,
+idCliente INT NOT NULL,
+idCartao INT NOT NULL,
+saldo DECIMAL(12,2),
+tipo VARCHAR(50) NOT NULL,
+data_abertura DATE NOT NULL,
+status_conta TINYINT NOT NULL,
 
-constraint pk_conta primary key(idConta, idCliente),
-constraint fk_conta_cliente foreign key (idCliente) references Cliente(idCliente)
+CONSTRAINT pk_conta PRIMARY KEY(idConta, idCliente),
+CONSTRAINT fk_conta_cliente FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
 );
 
 
-CREATE TABLE transacao(
-idTransacao int auto_increment,
-idContaOrigem int not null,
-idContaDestino int not null,
-valor numeric(12,2) not null,
-data_realizada date not null,
+CREATE TABLE Agencia(
+idAgencia INT AUTO_INCREMENT,
+idConta INT NOT NULL,
+numero INT NOT NULL,
+cidade VARCHAR(50) NOT NULL,
+estado VARCHAR(50) NOT NULL,
 
-constraint pk_transacao primary key (idTransacao),
-constraint fk_transacao_contaorigem foreign key (idcontaorigem) references Conta(idConta) on delete cascade on update cascade,
-constraint fk_transacao_contadestino foreign key (idContaDestino) references Conta(idConta) on delete cascade on update cascade
+CONSTRAINT pk_agencia PRIMARY KEY (idAgencia),
+CONSTRAINT fk_agencia_conta FOREIGN KEY (idConta) REFERENCES Conta(idConta) ON DELETE CASCADE ON UPDATE CASCADE
+
+
 );
 
-ALTER TABLE Cliente change nome nome_cliente varchar(50) not null;
+
+CREATE TABLE Chave_pix (
+idChave INT AUTO_INCREMENT,
+idConta INT NOT NULL,
+tipo VARCHAR(45) NOT NULL,
+valor DECIMAL(12,2),
+
+CONSTRAINT pk_chave_pix PRIMARY KEY (idChave),
+CONSTRAINT fk_pix_conta FOREIGN KEY (idConta) REFERENCES Conta(idConta) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+
+
+CREATE TABLE Cartao(
+idCartao INT AUTO_INCREMENT,
+idConta INT NOT NULL,
+numero INT NOT NULL,
+tipo VARCHAR(45) NOT NULL,
+limite DECIMAL (12,2) NOT NULL,
+validade DATE NOT NULL,
+status_cartao TINYINT NOT NULL,
+
+CONSTRAINT pk_cartao PRIMARY KEY (idCartao),
+CONSTRAINT fk_cartao_conta FOREIGN KEY (idConta) REFERENCES Conta(idConta) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+
+
+CREATE TABLE Fatura(
+idFatura INT AUTO_INCREMENT,
+idCartao INT NOT NULL,
+valor_total DECIMAL(12,2) NOT NULL,
+vencimento DATE NOT NULL,
+status_fatura VARCHAR(45) NOT NULL,
+
+CONSTRAINT pk_fatura PRIMARY KEY (idFatura),
+CONSTRAINT fk_fatura_cartao FOREIGN KEY (idCartao) REFERENCES Cartao(idCartao) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+
+
+CREATE TABLE Transacao(
+idTransacao INT AUTO_INCREMENT,
+idContaOrigem INT NOT NULL,
+idContaDestino INT NOT NULL,
+idCategoria INT NOT NULL,
+valor DECIMAL(12,2) NOT NULL,
+data_realizada DATE NOT NULL,
+
+CONSTRAINT pk_transacao PRIMARY KEY (idTransacao),
+CONSTRAINT fk_transacao_contaorigem FOREIGN KEY (idcontaorigem) REFERENCES Conta(idConta) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_transacao_contadestino FOREIGN KEY (idContaDestino) REFERENCES Conta(idConta) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE Categoria_transacao(
+idCategoria INT AUTO_INCREMENT,
+tipo VARCHAR(45),
+
+CONSTRAINT pk_categoria_transacao PRIMARY KEY (idCategoria)
+);
+
+
+CREATE TABLE Investimento (
+idInvestimento INT AUTO_INCREMENT,
+idCliente INT NOT NULL,
+valor NUMERIC(12,2) NOT NULL,
+tipo VARCHAR(50) NOT NULL,
+rendimento NUMERIC(10,2) NOT NULL,
+valor_CDI NUMERIC(5,2) NOT NULL,
+data_inicio DATE NOT NULL,
+data_fim DATE NOT NULL,
+
+
+CONSTRAINT pk_investimento PRIMARY KEY (idInvestimento, idCliente),
+CONSTRAINT fk_investimento_cliente FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+
+
+
+
+ALTER TABLE Cliente CHANGE nome nome_cliente VARCHAR(50) NOT NULL;
