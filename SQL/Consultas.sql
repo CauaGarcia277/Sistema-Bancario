@@ -42,3 +42,10 @@ NATURAL JOIN cliente AS c
 INNER JOIN transacao AS t WHERE t.idContaOrigem = co.idConta AND co.tipo = 'Corrente'
 GROUP BY nome
 ORDER BY SUM(t.valor) DESC;
+
+##Contabilizando total de transações por usuario
+SELECT c.nome_cliente as nome, COUNT(t.idTransacao) as quantidade_transacao FROM conta as co
+INNER JOIN cliente as c ON c.idCliente = co.idCliente
+INNER JOIN transacao as t ON t.idContaOrigem = co.idConta
+GROUP BY c.nome_cliente
+ORDER BY COUNT(t.idTransacao) DESC;
