@@ -101,20 +101,17 @@ CONSTRAINT fk_transacao_idcategoria FOREIGN KEY (idcategoria) REFERENCES Categor
 CREATE TABLE Investimento (
 idInvestimento INT AUTO_INCREMENT,
 idCliente INT NOT NULL,
-valor NUMERIC(12,2) NOT NULL,
+valor DECIMAL(12,2) NOT NULL,
 tipo VARCHAR(50) NOT NULL,
-rendimento NUMERIC(10,2) NOT NULL,
-valor_CDI NUMERIC(5,2) NOT NULL,
+rendimento DECIMAL(10,2) NOT NULL,
+valor_CDI DECIMAL(5,2) NOT NULL,
 data_inicio DATE NOT NULL,
 data_fim DATE NOT NULL,
 
 
-CONSTRAINT pk_investimento PRIMARY KEY (idInvestimento, idCliente),
+CONSTRAINT pk_investimento PRIMARY KEY (idInvestimento),
 CONSTRAINT fk_investimento_cliente FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
-
-
 
 
 

@@ -49,3 +49,4 @@ INNER JOIN cliente as c ON c.idCliente = co.idCliente
 INNER JOIN transacao as t ON t.idContaOrigem = co.idConta
 GROUP BY c.nome_cliente
 ORDER BY COUNT(t.idTransacao) DESC;
+
